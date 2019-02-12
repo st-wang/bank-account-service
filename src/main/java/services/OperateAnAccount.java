@@ -8,7 +8,5 @@ public interface OperateAnAccount {
 
     void withdrawal(double amount) throws OperationNotSupportedException;
 
-    void displayBalance();
-
     void displayOperations();
 }

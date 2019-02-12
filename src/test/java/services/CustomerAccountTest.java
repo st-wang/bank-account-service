@@ -114,15 +114,6 @@ public class CustomerAccountTest {
     }
 
     @Test
-    public void should_display_balance_of_account() {
-        //Given
-        CustomerAccount account = create_a_customer_account(100);
-        //When
-        account.deposit(10);
-        account.displayBalance();
-    }
-
-    @Test
     public void should_display_operations_of_account() throws OperationNotSupportedException {
         //Given
         CustomerAccount account = create_a_customer_account(100);

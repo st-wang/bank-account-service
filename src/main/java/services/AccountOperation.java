@@ -2,7 +2,6 @@ package services;
 
 import ddd.DomainEntity;
 import ddd.annotation.Entity;
-import ddd.annotation.ValueType;
 
 import java.time.LocalDateTime;
 

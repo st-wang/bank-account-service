@@ -51,10 +51,10 @@ public class CustomerAccount extends DomainEntity implements OperateAnAccount {
         double checkedAmount = checkAmount(amount);
 
         updateAccountBalance(checkedAmount);
-
         addANewAccountOperation(new AccountOperation("", OperationType.DEPOSIT, checkedAmount));
-        System.out.println(OperationType.DEPOSIT.toString() + " of " + checkedAmount
-                + ", the balance of your account is: " + getAccountBalance() + ".");
+
+        System.out.println(OperationType.DEPOSIT.toString() + " of " + checkedAmount);
+        displayBalance();
     }
 
     @Override
@@ -66,15 +66,10 @@ public class CustomerAccount extends DomainEntity implements OperateAnAccount {
         } else {
             throw new OperationNotSupportedException("Not enough balance.");
         }
-
         addANewAccountOperation(new AccountOperation("", OperationType.WITHDRAWAL, checkedAmount));
-        System.out.println(OperationType.WITHDRAWAL.toString() + " of " + checkedAmount
-                + ", the balance of your account is: " + getAccountBalance() + ".");
-    }
-
-    @Override
-    public void displayBalance() {
-        System.out.println("The balance of your account is: " + getAccountBalance() + ".");
+        
+        System.out.println(OperationType.WITHDRAWAL.toString() + " of " + checkedAmount);
+        displayBalance();
     }
 
     @Override
@@ -85,13 +80,18 @@ public class CustomerAccount extends DomainEntity implements OperateAnAccount {
                     + op.getOperationType().toString() + " ### "
                     + String.valueOf(op.getOperationAmount()));
         });
+        displayBalance();
     }
 
-    private double checkAmount ( double amount){
+    private double checkAmount(double amount) {
         if (amount > 0 && amount % 10 == 0) {
             return amount;
         } else {
             throw new IllegalArgumentException("Amount must be a multiple of 10 and greater than 0.");
         }
+    }
+
+    private void displayBalance() {
+        System.out.println("The balance of your account is: " + getAccountBalance() + ".");
     }
 }
